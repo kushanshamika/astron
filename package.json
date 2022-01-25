@@ -1,0 +1,29 @@
+{
+  "name": "astron",
+  "version": "1.0.0",
+  "description": "A  Node.js framework to build the efficient Backend for Frontend (BFF) pattern on top of TypeScript",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc --w",
+    "start": "tsc && ts-node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kushanshamika/astron.git"
+  },
+  "author": "Kushan Shamika",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kushanshamika/astron/issues"
+  },
+  "homepage": "https://github.com/kushanshamika/astron#readme",
+  "dependencies": {
+    "@types/config": "^0.0.41",
+    "@types/express": "^4.17.13",
+    "@types/http-proxy": "^1.17.8",
+    "config": "^3.3.7",
+    "express": "^4.17.2",
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^2.0.2"
+  }
+}
