@@ -7,7 +7,6 @@
         "target": "ES6"
     },
     "include": [
-        "./lib/**/*", 
-        "index.ts"    
+        "./lib/**/*"   
     ]
 }
