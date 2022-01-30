@@ -1,13 +1,9 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
+import { routes } from '../config';
 
-const options = {
-  target: 'https://jsonplaceholder.typicode.com',
-  changeOrigin: true,
-  pathRewrite: {
-    [`^/api`]: '',
-  },
-};
-
-const exampleProxy = createProxyMiddleware(options);
-
-export default exampleProxy;
+export function proxy(app) {
+  routes.forEach((route_obj) => {
+    app[route_obj['method']](route_obj['route'], (req, res) => {
+      res.send({ status: 'OK' });
+    });
+  });
+}
