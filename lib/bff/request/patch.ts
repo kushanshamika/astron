@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export async function JSONFetch(actionObj, bffResponse) {
-  const response = await axios.get(actionObj['url']);
+export async function JSONPatch(actionObj, bffResponse, req) {
+  const response = await axios[actionObj['action']](actionObj['url'], req.body);
 
   if (actionObj['action'] === 'merge') {
     if (actionObj['key']) {
@@ -11,5 +11,7 @@ export async function JSONFetch(actionObj, bffResponse) {
     }
   }
 
-  return bffResponse;
+  console.log(bffResponse);
+
+  return response.data;
 }
