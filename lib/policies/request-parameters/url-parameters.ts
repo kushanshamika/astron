@@ -13,8 +13,6 @@ export async function parameterReplace(url, paramsObj, request, bffResponse) {
     params = { ...params, ..._.pick(bffResponse, paramsObj['response']) };
   }
 
-  console.log(params);
-
   return url.replace(/\$\(([^\)]+)?\)/g, function ($1, $2) {
     return params[$2];
   });
