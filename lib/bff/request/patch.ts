@@ -1,17 +1,22 @@
 import axios from 'axios';
+import * as _ from 'lodash';
 
 export async function JSONPatch(actionObj, bffResponse, req) {
-  const response = await axios[actionObj['action']](actionObj['url'], req.body);
+  let requestBody = undefined;
 
-  if (actionObj['action'] === 'merge') {
-    if (actionObj['key']) {
-      bffResponse[actionObj['key']] = response.data;
+  if (_.get(actionObj, 'body', undefined)) {
+    requestBody = _.pick(req.body, actionObj['body']);
+  }
+
+  const response = await axios[actionObj['action']](actionObj['url'], requestBody);
+
+  if (actionObj['response']['action'] === 'merge') {
+    if (actionObj['response']['key']) {
+      bffResponse[actionObj['response']['key']] = response.data;
     } else {
       bffResponse = { ...bffResponse, ...response.data };
     }
   }
 
-  console.log(bffResponse);
-
-  return response.data;
+  return bffResponse;
 }
