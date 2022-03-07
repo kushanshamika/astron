@@ -1,3 +1,8 @@
-import * as config from 'config';
+import * as mongoose from 'mongoose';
 
-export const routes: Array<{}> = config.get('apiEndpoints') || [];
+import { EndpointSchema } from '../../admin/endpoints/endpointModel';
+
+const Endpoint = mongoose.model('Endpoint', EndpointSchema);
+let dynamicRoutes = undefined;
+
+export const routes = Endpoint.find({}).lean().exec();
