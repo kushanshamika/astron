@@ -12,7 +12,7 @@ export const addNewEndpoint = (req, res) => {
 
       res.send(err);
     }
-    res.json(newEndpoint);
+    res.json(endpoint);
   });
 };
 
@@ -23,4 +23,20 @@ export const getEndpoints = (req, res) => {
     }
     res.json(endpoint);
   });
+};
+
+export const designEndpoint = (req, res) => {
+  Endpoint.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: true, useFindAndModify: false },
+    (err, endpoint) => {
+      if (err) {
+        console.log(err);
+
+        res.send(err);
+      }
+      res.json(endpoint);
+    }
+  );
 };
